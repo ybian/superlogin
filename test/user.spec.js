@@ -228,7 +228,7 @@ describe('User Model', function() {
       .catch(function(err) {
         if(err.validationErrors) {
           expect(err.validationErrors.email[0]).to.equal('Email already in use');
-          expect(err.validationErrors.username[0]).to.equal('Username already in use');
+          // expect(err.validationErrors.username[0]).to.equal('Username already in use');
           done();
         } else {
           done(err);
@@ -863,7 +863,9 @@ describe('User Model', function() {
   it('should create a new user in userEmail mode', function(done) {
     previous
       .then(function() {
-        userConfig.setItem('local.emailUsername', true);
+        userConfig.setItem('local.usernameKeys', ['email']);
+        userConfig.setItem('local.usernameField', 'email');
+        userConfig.setItem('local.sendConfirmEmail', false);
         // Don't create any more userDBs
         userConfig.removeItem('userDBs.defaultDBs');
         // Create a new instance of user with the new config
@@ -871,8 +873,8 @@ describe('User Model', function() {
         return user.create(emailUserForm, req);
       })
       .then(function(newUser) {
-        expect(newUser.unverifiedEmail.email).to.equal(emailUserForm.email);
-        expect(newUser._id).to.equal(emailUserForm.email);
+        // expect(newUser.unverifiedEmail.email).to.equal(emailUserForm.email);
+        expect(newUser.email).to.equal(emailUserForm.email);
         done();
       })
       .catch(function(err) {

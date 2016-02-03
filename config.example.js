@@ -29,6 +29,8 @@ module.exports = {
     userActivityLogSize: 10
   },
   local: {
+    // The regular expression to match a phone number. The default only matches mobile phones in China.
+    phoneRegexp: /^1[0-9]{10}/,
     // Send out a confirm email after each user signs up with local login
     sendConfirmEmail: true,
     // Require the email be confirmed before the user can login
@@ -44,6 +46,8 @@ module.exports = {
     // Custom names for the username and password fields in your sign-in form
     usernameField: 'user',
     passwordField: 'pass'
+    // Fields that can be used to login. Values can be 'email', 'phone', 'username'
+    usernameKeys: ['email', 'phone']
   },
   dbServer: {
     // The CouchDB compatible server where all your databases are stored on

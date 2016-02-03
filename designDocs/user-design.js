@@ -8,6 +8,11 @@ module.exports = {
           emit(doc.unverifiedEmail.email, null);
         }
       },
+      phone: function(doc) {
+        if(doc.phone) {
+          emit(doc.phone, null);
+        }
+      },
       username: function(doc) {
         emit(doc._id, null);
       },
