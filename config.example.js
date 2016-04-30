@@ -62,6 +62,8 @@ module.exports = {
     userDB: 'sl_users',
     // CouchDB's _users database. Each session generates the user a unique login and password. This is not used with Cloudant.
     couchAuthDB: '_users'
+    // The field to distinguish user models from others in the same database. The default is '$type'
+    typeField: '$type'
   },
   session: {
     // 'redis' or 'memory'
