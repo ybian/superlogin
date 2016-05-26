@@ -26,7 +26,11 @@ module.exports = {
     // The amount of time a password reset token is valid for
     tokenLife: 86400,
     // The maximum number of entries in the activity log in each user doc. Zero to disable completely
-    userActivityLogSize: 10
+    userActivityLogSize: 10,
+    // If set to true, the user will be logged in automatically after registering
+    loginOnRegistration: false,
+    // If set to true, the user will be logged in automatically after resetting the password
+    loginOnPasswordReset: false
   },
   local: {
     // The regular expression to match a phone number. The default only matches mobile phones in China.
@@ -39,10 +43,6 @@ module.exports = {
     confirmEmailRedirectURL: '/',
     // Set this to true to disable usernames and use emails instead
     emailUsername: false,
-    // If set to true, the user will be logged in automatically after registering
-    loginOnRegistration: false,
-    // If set to true, the user will be logged in automatically after resetting the password
-    loginOnPasswordReset: false,
     // Custom names for the username and password fields in your sign-in form
     usernameField: 'user',
     passwordField: 'pass'
@@ -55,6 +55,9 @@ module.exports = {
     host: 'localhost:5984',
     user: '',
     password: '',
+    // If the public uses a separate URL from your Node.js server to access the database specify it here.
+    // This will be the access URL for all your user's personalDBs
+    publicURL: 'https://mydb.example.com',
     // Set this to true if you are using Cloudant
     cloudant: false,
     // The name for the database that stores all your user information. This is distinct from CouchDB's _user database.
@@ -69,7 +72,7 @@ module.exports = {
     // 'redis' or 'memory'
     adapter: 'redis',
     redis: {
-      // If url is supplied port and url will be ignored
+      // If url is supplied, port and host will be ignored
       url: 'redis://user:pass@host:port',
       port: 6379,
       host: 'localhost',

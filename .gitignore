@@ -1,5 +1,7 @@
 .DS_Store
 .idea/
+.session
 node_modules/
 npm-debug.log
 env.sh
+.env

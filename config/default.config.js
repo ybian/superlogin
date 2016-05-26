@@ -7,14 +7,19 @@ module.exports = {
     maxFailedLogins: 4,
     lockoutTime: 300,
     sessionLife: 86400,
-    tokenLife: 86400
+    tokenLife: 86400,
+    loginOnRegistration: false,
+    loginOnPasswordReset: false
   },
   local: {
     usernameField: 'username',
     passwordField: 'password'
   },
   session: {
-    adapter: 'memory'
+    adapter: 'memory',
+    file: {
+      sessionsRoot: '.sessions'
+    }
   },
   dbServer: {
     protocol: 'http://',
