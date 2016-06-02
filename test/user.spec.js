@@ -52,6 +52,7 @@ var userConfig = new Configure({
   local: {
     sendConfirmEmail: true,
     requireEmailConfirm: false,
+    usernameKeys: ['email', 'username']
   },
   mailer: {
     fromEmail: 'noreply@example.com'
@@ -230,7 +231,7 @@ describe('User Model', function() {
       .catch(function(err) {
         if(err.validationErrors) {
           expect(err.validationErrors.email[0]).to.equal('Email already in use');
-          // expect(err.validationErrors.username[0]).to.equal('Username already in use');
+          expect(err.validationErrors.username[0]).to.equal('Username already in use');
         } else {
           throw err;
         }

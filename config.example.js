@@ -30,7 +30,9 @@ module.exports = {
     // If set to true, the user will be logged in automatically after registering
     loginOnRegistration: false,
     // If set to true, the user will be logged in automatically after resetting the password
-    loginOnPasswordReset: false
+    loginOnPasswordReset: false,
+    // An invitation code is required to register
+    inviteOnlyRegistration: false
   },
   local: {
     // The regular expression to match a phone number. The default only matches mobile phones in China.
@@ -45,9 +47,11 @@ module.exports = {
     emailUsername: false,
     // Custom names for the username and password fields in your sign-in form
     usernameField: 'user',
-    passwordField: 'pass'
+    passwordField: 'pass',
     // Fields that can be used to login. Values can be 'email', 'phone', 'username'
-    usernameKeys: ['email', 'phone']
+    usernameKeys: ['email', 'phone'],
+    // When create a new user, whether to use auto generated uuid (instead of username)
+    uuidAsId: true
   },
   dbServer: {
     // The CouchDB compatible server where all your databases are stored on

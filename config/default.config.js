@@ -9,11 +9,13 @@ module.exports = {
     sessionLife: 86400,
     tokenLife: 86400,
     loginOnRegistration: false,
-    loginOnPasswordReset: false
+    loginOnPasswordReset: false,
+    inviteOnlyRegistration: false
   },
   local: {
     usernameField: 'username',
-    passwordField: 'password'
+    passwordField: 'password',
+    uuidAsId: false
   },
   session: {
     adapter: 'memory',

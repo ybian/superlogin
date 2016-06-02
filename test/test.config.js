@@ -17,7 +17,8 @@ module.exports = {
     lockoutTime: 600
   },
   local: {
-    sendConfirmEmail: true
+    sendConfirmEmail: true,
+    usernameKeys: ['email', 'username']
   },
   session: {
     adapter: 'redis'

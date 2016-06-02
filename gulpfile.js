@@ -35,9 +35,14 @@ gulp.task('user-test', ['dbauth-test'], function () {
     .pipe(mocha({timeout: 2000}));
 });
 
-gulp.task('final-test', ['user-test'], function () {
+gulp.task('user-extra-test', ['user-test'], function () {
+  return gulp.src(['test/user-extra.spec.js'], {read: false})
+    .pipe(mocha({timeout: 2000}));
+});
+
+gulp.task('final-test', ['user-extra-test'], function () {
   return gulp.src(['test/test.js'], {read: false})
     .pipe(mocha({timeout: 2000}));
 });
 
-gulp.task('default', ['final-test', 'user-test', 'mailer-test', 'session-test', 'middleware-test', 'lint']);
+gulp.task('default', ['final-test', 'user-extra-test', 'mailer-test', 'session-test', 'middleware-test', 'lint']);
