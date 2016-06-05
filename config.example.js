@@ -84,6 +84,11 @@ module.exports = {
       unix_socket: '/tmp/echo.sock',
       options: {},
       password: process.env.REDIS_PASSWORD
+    },
+    // Copy profile to session. If profileMapping is defined, it will try to get missing fields from provider profiles
+    profileMapping: {
+      nickname: {wechat: 'nickname'},
+      avatar: {wechat: 'headimgurl'}
     }
   },
   mailer: {

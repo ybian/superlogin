@@ -222,4 +222,40 @@ describe('User Model Extra Features', function() {
         }
       });
   });
+
+  it('should allow change email', function() {
+    var code, userId;
+
+    return previous
+      .then(function() {
+        userConfig.setItem('security.inviteOnlyRegistration', false);
+        user = new User(userConfig, userDB, keysDB, mailer, emitter);
+        return user.create(emailUserForm, req);
+      })
+      .then(function(newUser) {
+        return user.changeEmail(newUser._id, 'newEmail@example.com');
+      })
+      .then(function(result) {
+        expect(result.ok).to.equal(true);
+      });
+  });
+
+  it('should not allow change email to null if email is the only credential', function() {
+    var code, userId;
+
+    return previous
+      .then(function() {
+        user = new User(userConfig, userDB, keysDB, mailer, emitter);
+        return user.create(emailUserForm, req);
+      })
+      .then(function(newUser) {
+        return user.changeEmail(newUser._id, '');
+      })
+      .then(function(result) {
+        throw new Error('Should not allow set email to null');
+      })
+      .catch(function(err) {
+        expect(err.message).to.equal('You cannot set your only login credential to null!');
+      });
+  });
 });
