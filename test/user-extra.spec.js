@@ -215,11 +215,7 @@ describe('User Model Extra Features', function() {
         throw new Error('Should not allow registration');
       })
       .catch(function(err) {
-        if(err.validationErrors) {
-          expect(err.validationErrors).to.equal('invite code required');
-        } else {
-          throw err;
-        }
+        expect(err.key).to.equal('missing_invite_code');
       });
   });
 

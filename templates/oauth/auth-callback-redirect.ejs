@@ -17,7 +17,7 @@
     var link = <%- JSON.stringify(link) %>;
     var form = document.getElementById('form');
     if (error) {
-      form.setAttribute('action', '/signin');
+      form.setAttribute('action', '<%- redirectOnError %>');
       document.getElementById('error').value = error ? JSON.stringify(error) : null;
     } else {
       form.setAttribute('action', '<%- redirect %>');
